@@ -1,5 +1,6 @@
 import { IoGameController } from 'react-icons/io5';
-import { GiStoneThrone } from 'react-icons/gi';
+import { GiStoneThrone, GiSkullCrossedBones } from 'react-icons/gi';
+import { FaMasksTheater } from 'react-icons/fa6';
 
 const navLinks = [
   {
@@ -8,9 +9,19 @@ const navLinks = [
     text: 'Jogos',
   },
   {
-    href: '/game-of-thrones',
+    href: '/series',
     icon: <GiStoneThrone size={26} />,
-    text: 'Game of Thrones',
+    text: 'Séries',
+  },
+  {
+    href: '/sitcoms',
+    icon: <FaMasksTheater size={26} />,
+    text: 'Sitcoms',
+  },
+  {
+    href: '/animes',
+    icon: <GiSkullCrossedBones size={26} />,
+    text: 'Animes',
   },
 ];
 

@@ -51,7 +51,7 @@ const Login = () => {
       localStorage.setItem(localStorageKeys.user, JSON.stringify(data));
 
       setUser(data);
-      router.push('/empreendimentos');
+      router.push('/jogos');
     } catch (error) {
       //
     } finally {

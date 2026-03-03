@@ -75,7 +75,7 @@ const AuthProvider = ({ children }: ChildrenProps) => {
   // }
 
   // if (isAuthenticated && publicRoutes.includes(pathname) && pathname === '/') {
-  //   redirect('/empreendimentos');
+  //   redirect('/jogos');
   // }
 
   return (

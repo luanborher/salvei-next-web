@@ -3,14 +3,13 @@ import { useState } from 'react';
 import ContainerPage from '@/components/ContainerPage/ContainerPage';
 import HomeCircleIcon from '@/components/Icons/notFound/HomeCircle';
 import Input from '@/components/Input';
-
-import { gameofthronesMock } from '@/mocks/gameofthrones';
 import EntretenimentoCard from '@/components/Cards/EntretenimentoCard/EntretenimentoCard';
+import { seriesMock } from '@/mocks/series';
 
 import { ActionsRow, List, NotFoundWrapper } from './styles';
 
-const GameOfThrones = () => {
-  const [contents] = useState(gameofthronesMock || []);
+const Series = () => {
+  const [contents] = useState(seriesMock || []);
   const [search, setSearch] = useState('');
 
   const filteredContents = contents.filter(enterprise =>
@@ -32,7 +31,7 @@ const GameOfThrones = () => {
   };
 
   return (
-    <ContainerPage title="Game of Thrones" rightContent={renderActions()}>
+    <ContainerPage title="Séries" rightContent={renderActions()}>
       <List>
         {filteredContents?.length > 0 &&
           filteredContents.map(enterprise => (
@@ -57,4 +56,4 @@ const GameOfThrones = () => {
   );
 };
 
-export default GameOfThrones;
+export default Series;
