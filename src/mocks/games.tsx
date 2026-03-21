@@ -8,14 +8,14 @@ export interface EnterpriseMock {
 }
 
 const baseData = [
-  ['God of War', 'gow1', 0, true, 'God of War'],
   ['God of War: Ragnarok', 'gow2', 2, false, 'God of War'],
+  ['The Last of Us™ Parte II', 'tlo2', 1, false, 'The Last of Us'],
+  ['Marvel’s Spider-Man 2', 'sm2', 1, false, 'Marvel Games'],
+  ['God of War', 'gow1', 0, true, 'God of War'],
   ['Marvel’s Spider-Man', 'smr', 0, true, 'Marvel Games'],
   ['Marvel’s Spider-Man: Miles Morales', 'smm', 0, false, 'Marvel Games'],
-  ['Marvel’s Spider-Man 2', 'sm2', 1, false, 'Marvel Games'],
   ['Hogwarts Legacy', 'hgl', 0, true, 'Harry Potter'],
   ['The Last of Us™ Part I', 'tlo', 0, false, 'The Last of Us'],
-  ['The Last of Us™ Parte II', 'tlo2', 1, false, 'The Last of Us'],
 ] as const;
 
 const imgs: Record<string, string> = {

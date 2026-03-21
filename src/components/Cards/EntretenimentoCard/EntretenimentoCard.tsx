@@ -71,7 +71,7 @@ const EntretenimentoCard: React.FC<EnterpriseCardProps> = ({
   }, [isMenuOpen]);
 
   return (
-    <CardContainer>
+    <CardContainer status={status}>
       <ImageContainer ref={menuRef}>
         <EnterpriseImage src={imageUrl} alt={title} />
 

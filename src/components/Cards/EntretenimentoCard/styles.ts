@@ -5,7 +5,7 @@ interface StatusBadgeProps {
   status: 'ativo' | 'pendente' | 'em-andamento';
 }
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.div<StatusBadgeProps>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -22,6 +22,17 @@ export const CardContainer = styled.div`
   &:hover {
     transform: scale(0.99);
   }
+
+  ${({ status }) => {
+    switch (status) {
+      case 'ativo':
+        return ' opacity: 0.45;';
+      case 'pendente':
+        return 'opacity: 1;';
+      case 'em-andamento':
+        return 'opacity: 1;';
+    }
+  }}
 `;
 
 export const ImageContainer = styled.div`
@@ -58,7 +69,7 @@ export const StatusBadge = styled.div<StatusBadgeProps>`
   ${({ status }) => {
     switch (status) {
       case 'ativo':
-        return ' background: #34C447CC; ';
+        return ' background: #34C447CC;';
       case 'pendente':
         return ' background: #D48427E0; ';
       case 'em-andamento':
