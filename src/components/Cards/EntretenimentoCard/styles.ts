@@ -13,8 +13,8 @@ export const CardContainer = styled.div<StatusBadgeProps>`
   width: 100%;
   max-width: 391.67px;
   height: auto;
-  background: #ffffff31;
-  border: 1px solid #d6d5d3;
+  background: #1136db1a;
+  border: 1px solid #3a3a3a;
   border-radius: 12px;
   padding: 12px;
   transition: all 0.3s ease;
@@ -26,9 +26,8 @@ export const CardContainer = styled.div<StatusBadgeProps>`
   ${({ status }) => {
     switch (status) {
       case 'ativo':
-        return ' opacity: 0.45;';
+        return ' opacity: 0.3;';
       case 'pendente':
-        return 'opacity: 1;';
       case 'em-andamento':
         return 'opacity: 1;';
     }
@@ -39,6 +38,7 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 220px;
+  border: 1px solid #3a3a3a;
   border-radius: 12px;
   overflow: hidden;
 `;
@@ -47,7 +47,21 @@ export const EnterpriseImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+export const StatusIcon = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const StatusBadge = styled.div<StatusBadgeProps>`

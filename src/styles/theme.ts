@@ -3,7 +3,7 @@ export const theme = {
     area: 'var(--font-area), sans-serif',
   },
   colors: {
-    primary: '#FF8500',
+    primary: '#11B3DB',
     primary2: '#FF9D33',
     primary3: '#FFB666',
     primary4: '#FFCE99',

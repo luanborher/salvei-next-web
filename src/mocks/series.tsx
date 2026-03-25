@@ -9,7 +9,7 @@ export interface EnterpriseMock {
 const baseData = [
   [
     'Peaky Blinders',
-    'https://m.media-amazon.com/images/S/pv-target-images/5c3e0d6b9ad0460aa7e63bb1e1d56c4b75722a98f467f5aa8d22650c27a71e1b.jpg',
+    'https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABZjBMkSR63oeZNC_oW_3yec6nQPTD2N1XfI1KKk-vEgPsxy8126T9D-1nTXV-sUJ2g8czYIL4l4_tSiWX9s6CtNpBJf6W8rHutpo.jpg?r=fc0',
     'em-andamento',
     'Peaky Blinders',
   ],
@@ -18,6 +18,12 @@ const baseData = [
     'https://rollingstone.com.br/wp-content/uploads/dexter-poster-foto-divulgacao-showtime.jpg',
     'em-andamento',
     'Dexter',
+  ],
+  [
+    'One Piece',
+    'https://comandogeek.com.br/blog/wp-content/uploads/2025/11/One-Piece-live-action-2a-temporada-na-Netflix-tera-8-episodios-e-ganha-novo-teaser.png',
+    'ativo',
+    'One Piece',
   ],
   [
     'O Cavaleiro dos Sete Reinos',

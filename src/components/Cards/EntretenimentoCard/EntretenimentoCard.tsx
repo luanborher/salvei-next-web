@@ -3,11 +3,11 @@ import { FaTrophy } from 'react-icons/fa';
 
 import { LocationIcon } from '@/components/Icons/enterprises/CardIcons';
 
+import { IoCheckmarkCircle, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import {
   CardContainer,
   ImageContainer,
   EnterpriseImage,
-  StatusBadge,
   MenuButton,
   MenuIcon,
   ContentContainer,
@@ -16,6 +16,7 @@ import {
   Address,
   AddressText,
   HeaderColumn,
+  StatusIcon,
 } from './styles';
 
 export interface EnterpriseCardProps {
@@ -36,19 +37,6 @@ const EntretenimentoCard: React.FC<EnterpriseCardProps> = ({
   const menuRef = useRef<HTMLDivElement>(null);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case 'ativo':
-        return 'Finalizado';
-      case 'pendente':
-        return 'Pendente';
-      case 'em-andamento':
-        return 'Em andamento';
-      default:
-        return '';
-    }
-  };
 
   const onMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -75,7 +63,15 @@ const EntretenimentoCard: React.FC<EnterpriseCardProps> = ({
       <ImageContainer ref={menuRef}>
         <EnterpriseImage src={imageUrl} alt={title} />
 
-        <StatusBadge status={status}>{getStatusLabel(status)}</StatusBadge>
+        {status === 'em-andamento' || status === 'pendente' ? (
+          <StatusIcon>
+            <IoCheckmarkCircleOutline size={30} color="#00FF0DB0" />
+          </StatusIcon>
+        ) : (
+          <StatusIcon>
+            <IoCheckmarkCircle size={30} color="#00FF0DB0" />
+          </StatusIcon>
+        )}
 
         {platinum && (
           <MenuButton onClick={onMenuClick}>
@@ -84,21 +80,6 @@ const EntretenimentoCard: React.FC<EnterpriseCardProps> = ({
             </MenuIcon>
           </MenuButton>
         )}
-
-        {/*
-        {isMenuOpen && (
-          <DropdownMenu>
-            <MenuOption onClick={handleDelete}>
-              <TrashCardIcon />
-              <MenuOptionText $variant="delete">Excluir</MenuOptionText>
-            </MenuOption>
-
-            <MenuOption onClick={handleEdit}>
-              <EditCardIcon />
-              <MenuOptionText $variant="edit">Editar</MenuOptionText>
-            </MenuOption>
-          </DropdownMenu>
-        )} */}
       </ImageContainer>
 
       <ContentContainer>
