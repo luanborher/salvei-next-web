@@ -12,11 +12,16 @@ import {
 } from 'react';
 
 import { localStorageKeys } from '@/utils/localStorageKeys';
+import { redirect, usePathname } from 'next/navigation';
 
 export interface User {
   id: number;
+  name: string;
+  birthDate: string;
+  phone: string;
+  cpf: string;
+  photo: string;
   email: string;
-  username: string;
 }
 
 export interface ILoginResponse {
@@ -42,7 +47,7 @@ const AuthProvider = ({ children }: ChildrenProps) => {
   const [user, setUser] = useState<User>({} as User);
   const [loading, setLoading] = useState(true);
 
-  // const pathname = usePathname();
+  const pathname = usePathname();
 
   useEffect(() => {
     const dataUser = localStorage.getItem(localStorageKeys.user);
@@ -64,19 +69,19 @@ const AuthProvider = ({ children }: ChildrenProps) => {
     setUser({} as User);
   };
 
-  // const publicRoutes = ['/'];
+  const publicRoutes = ['/', '/login'];
 
   if (loading) {
     return null;
   }
 
-  // if (!isAuthenticated && !publicRoutes.includes(pathname)) {
-  //   redirect('/');
-  // }
+  if (!isAuthenticated && !publicRoutes.includes(pathname)) {
+    redirect('/');
+  }
 
-  // if (isAuthenticated && publicRoutes.includes(pathname) && pathname === '/') {
-  //   redirect('/jogos');
-  // }
+  if (isAuthenticated && publicRoutes.includes(pathname) && pathname === '/') {
+    redirect('/jogos');
+  }
 
   return (
     <AuthContext.Provider value={{ user, setUser, isAuthenticated, logout }}>

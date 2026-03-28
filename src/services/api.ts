@@ -13,10 +13,8 @@ api.interceptors.request.use(
     const accessToken = localStorage.getItem(localStorageKeys.accessToken);
     if (
       accessToken &&
-      !config.url?.includes('auth/local') &&
-      !config.url?.includes('auth/local/refresh') &&
-      !config.url?.includes('auth/reset-password') &&
-      !config.url?.includes('sendEmailRecoverPassword')
+      !config.url?.includes('auth/login') &&
+      !config.url?.includes('auth/register')
     ) {
       config.headers!.Authorization = `Bearer ${accessToken}`;
     }
@@ -32,7 +30,7 @@ export async function refreshAccessToken() {
     const credentials = localStorage.getItem(localStorageKeys.refreshToken);
 
     if (typeof credentials === 'string') {
-      const { data } = await api.post('/auth/local/refresh', {
+      const { data } = await api.post('/auth/refresh', {
         refreshToken: credentials,
       });
       localStorage.setItem(localStorageKeys.accessToken, data.jwt);
@@ -57,7 +55,7 @@ api.interceptors.response.use(
     if (
       error.response?.status === 401 &&
       !originalRequest.retry &&
-      originalRequest.url !== '/auth/local/refresh'
+      originalRequest.url !== '/auth/refresh'
     ) {
       originalRequest.retry = true;
       const accessToken = await refreshAccessToken();

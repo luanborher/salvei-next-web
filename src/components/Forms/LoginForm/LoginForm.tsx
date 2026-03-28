@@ -3,10 +3,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
 
-import Input from '@/components/Input';
 import { localStorageKeys } from '@/utils/localStorageKeys';
 import { ILoginForm, LoginSchema } from '@/validations/LoginSchema';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth, User } from '@/hooks/useAuth';
+import Input from '@/components/Input';
+import api from '@/services/api';
 
 import {
   ButtonLogin,
@@ -18,6 +19,12 @@ import {
   Image,
   HeaderTitle,
 } from './styles';
+
+export interface ILoginResponse {
+  message: string;
+  token: string;
+  user: User;
+}
 
 const Login = () => {
   const router = useRouter();
@@ -37,22 +44,20 @@ const Login = () => {
     try {
       setIsSubmitting(true);
 
-      const data = {
-        id: 1,
-        username: 'User Test',
-        email: 'user@gmail.com',
-      };
+      const { data } = await api.post<ILoginResponse>('/auth/login', {
+        email: form.email,
+        password: form.password,
+      });
 
-      console.log('Login data:', form);
+      localStorage.setItem(localStorageKeys.accessToken, data.token);
+      localStorage.setItem(localStorageKeys.refreshToken, data.token);
+      localStorage.setItem(localStorageKeys.user, JSON.stringify(data.user));
 
-      localStorage.setItem(localStorageKeys.accessToken, '1234567890');
-      localStorage.setItem(localStorageKeys.refreshToken, '1234567890');
-      localStorage.setItem(localStorageKeys.user, JSON.stringify(data));
+      setUser(data.user);
 
-      setUser(data);
       router.push('/jogos');
     } catch (error) {
-      //
+      console.error('Erro ao fazer login:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -61,7 +66,7 @@ const Login = () => {
   return (
     <Center>
       <LoginForm>
-        <Image src="/img/login/login.svg" alt="logo-login-form" />
+        <Image src="/ticka_logo_full.svg" alt="logo-login-form" />
 
         <HeaderTitle>
           <TitleForm>Área de acesso - Master</TitleForm>
