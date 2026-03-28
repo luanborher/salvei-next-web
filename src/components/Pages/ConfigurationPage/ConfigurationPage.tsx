@@ -35,6 +35,7 @@ const ConfigurationPage = () => {
               value={user?.name}
               disabled
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
+              style={{ color: '#F0ECEC' }}
             />
           </InputContainer>
 
@@ -44,6 +45,7 @@ const ConfigurationPage = () => {
               value={cpfMask(user?.cpf)}
               disabled
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
+              style={{ color: '#F0ECEC' }}
             />
           </InputContainer>
 
@@ -53,6 +55,7 @@ const ConfigurationPage = () => {
               value={telephoneMask(user?.phone)}
               disabled
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
+              style={{ color: '#F0ECEC' }}
             />
           </InputContainer>
 
@@ -62,6 +65,7 @@ const ConfigurationPage = () => {
               value={user?.email}
               disabled
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
+              style={{ color: '#F0ECEC' }}
             />
 
             <LockIconWrapper>
