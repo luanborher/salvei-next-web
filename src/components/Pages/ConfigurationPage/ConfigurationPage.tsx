@@ -7,25 +7,19 @@ import ContainerPage from '@/components/ContainerPage/ContainerPage';
 import LockIcon from '@/components/Icons/LockIcon';
 import Button from '@/components/Button/Button';
 import ChangePasswordModal from '@/components/Modals/ChangePasswordModal/ChangePasswordModal';
+import { useAuth } from '@/hooks/useAuth';
+import { cpfMask, telephoneMask } from '@/utils/marks';
 
 import {
   ConfigurationContainer,
   InputContainer,
   LockIconWrapper,
-  PermissionsSection,
-  PermissionsTitle,
-  PermissionsContainer,
-  ToggleItem,
-  ToggleLabel,
-  ToggleSwitch,
-  ToggleInput,
-  ToggleSlider,
   PasswordInput,
 } from './styles';
 
 const ConfigurationPage = () => {
-  const [canView, setCanView] = useState(true);
-  const [canEdit, setCanEdit] = useState(true);
+  const { user } = useAuth();
+
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
 
   const handleChangePassword = () => {
@@ -38,8 +32,35 @@ const ConfigurationPage = () => {
         <ConfigurationContainer>
           <InputContainer>
             <Input
+              label="Nome completo"
+              value={user?.name}
+              disabled
+              styleLabel={{ fontWeight: 600 }}
+            />
+          </InputContainer>
+
+          <InputContainer>
+            <Input
+              label="CPF"
+              value={cpfMask(user?.cpf)}
+              disabled
+              styleLabel={{ fontWeight: 600 }}
+            />
+          </InputContainer>
+
+          <InputContainer>
+            <Input
+              label="Telefone"
+              value={telephoneMask(user?.phone)}
+              disabled
+              styleLabel={{ fontWeight: 600 }}
+            />
+          </InputContainer>
+
+          <InputContainer>
+            <Input
               label="E-mail"
-              value="exemplo@gmail.com"
+              value={user?.email}
               disabled
               styleLabel={{ fontWeight: 600 }}
             />
@@ -68,39 +89,6 @@ const ConfigurationPage = () => {
             >
               Alterar senha
             </Button>
-          </InputContainer>
-
-          <InputContainer>
-            <PermissionsSection>
-              <PermissionsTitle>Ações permitidas</PermissionsTitle>
-
-              <PermissionsContainer>
-                <ToggleItem>
-                  <ToggleLabel>Visualizar</ToggleLabel>
-
-                  <ToggleSwitch>
-                    <ToggleInput
-                      type="checkbox"
-                      checked={canView}
-                      onChange={e => setCanView(e.target.checked)}
-                    />
-                    <ToggleSlider />
-                  </ToggleSwitch>
-                </ToggleItem>
-
-                <ToggleItem>
-                  <ToggleLabel>Editar</ToggleLabel>
-                  <ToggleSwitch>
-                    <ToggleInput
-                      type="checkbox"
-                      checked={canEdit}
-                      onChange={e => setCanEdit(e.target.checked)}
-                    />
-                    <ToggleSlider />
-                  </ToggleSwitch>
-                </ToggleItem>
-              </PermissionsContainer>
-            </PermissionsSection>
           </InputContainer>
         </ConfigurationContainer>
       </ContainerPage>

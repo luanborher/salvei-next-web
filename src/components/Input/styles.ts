@@ -16,7 +16,7 @@ export const StyledInput = styled.input<{
   font-size: 14px;
   font-weight: 400;
   font-family: ${({ theme }) => theme.fonts.area};
-  color: ${({ theme }) => theme.colors.secondary5};
+  color: ${({ theme }) => theme.colors.secondary};
   outline: 0;
 
   &:-webkit-autofill,
