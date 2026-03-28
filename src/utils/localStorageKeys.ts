@@ -1,5 +1,5 @@
 export const localStorageKeys = {
-  user: '@stayforyouMaster: user',
-  accessToken: '@stayforyouMaster: accessToken',
-  refreshToken: '@stayforyouMaster: refreshToken',
+  user: '@ticka: user',
+  accessToken: '@ticka: accessToken',
+  refreshToken: '@ticka: refreshToken',
 };

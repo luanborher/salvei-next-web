@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import ArrowDownIcon from '@/components/Icons/ArrowDownIcon';
 import * as S from './styles';
 
 interface Option {
@@ -16,8 +15,6 @@ interface CustomSelectProps {
   placeholder?: string;
   menuMaxHeight?: number;
 }
-
-// TODO: ajustar select
 
 export const CustomSelect = ({
   options,
@@ -55,7 +52,7 @@ export const CustomSelect = ({
       <S.SelectButton onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
         <S.SelectedText>{selectedOption?.label || placeholder}</S.SelectedText>
         <S.ArrowWrapper $isOpen={isOpen}>
-          <ArrowDownIcon />
+          {/* <ArrowDownIcon /> */}
         </S.ArrowWrapper>
       </S.SelectButton>
 
