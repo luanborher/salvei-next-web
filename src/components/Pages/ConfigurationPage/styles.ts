@@ -25,23 +25,3 @@ export const LockIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-export const PasswordInput = styled.div`
-  width: 100%;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  background: ${({ theme }) => theme.colors.white};
-  border-radius: 8px;
-  border: 1px solid #d6d5d3;
-  padding: 12px;
-  outline: 0;
-
-  span {
-    width: 8px;
-    height: 8px;
-    background-color: #5d574f;
-    border-radius: 50%;
-    margin-right: 4px;
-  }
-`;

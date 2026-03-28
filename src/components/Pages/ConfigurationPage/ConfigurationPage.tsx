@@ -14,7 +14,6 @@ import {
   ConfigurationContainer,
   InputContainer,
   LockIconWrapper,
-  PasswordInput,
 } from './styles';
 
 const ConfigurationPage = () => {
@@ -35,7 +34,7 @@ const ConfigurationPage = () => {
               label="Nome completo"
               value={user?.name}
               disabled
-              styleLabel={{ fontWeight: 600 }}
+              styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
             />
           </InputContainer>
 
@@ -44,7 +43,7 @@ const ConfigurationPage = () => {
               label="CPF"
               value={cpfMask(user?.cpf)}
               disabled
-              styleLabel={{ fontWeight: 600 }}
+              styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
             />
           </InputContainer>
 
@@ -53,7 +52,7 @@ const ConfigurationPage = () => {
               label="Telefone"
               value={telephoneMask(user?.phone)}
               disabled
-              styleLabel={{ fontWeight: 600 }}
+              styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
             />
           </InputContainer>
 
@@ -62,7 +61,7 @@ const ConfigurationPage = () => {
               label="E-mail"
               value={user?.email}
               disabled
-              styleLabel={{ fontWeight: 600 }}
+              styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
             />
 
             <LockIconWrapper>
@@ -71,16 +70,7 @@ const ConfigurationPage = () => {
           </InputContainer>
 
           <InputContainer style={{ alignItems: 'end' }}>
-            <PasswordInput>
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-            </PasswordInput>
+            <div />
 
             <Button
               type="button"
