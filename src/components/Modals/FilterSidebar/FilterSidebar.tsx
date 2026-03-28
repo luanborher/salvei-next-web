@@ -2,7 +2,6 @@ import React from 'react';
 
 import Input from '@/components/Input';
 import Button from '@/components/Button/Button';
-import CloseIcon from '@/components/Icons/CloseIcon';
 
 import {
   Overlay,
@@ -34,7 +33,9 @@ const FilterSidebar: React.FC<Props> = ({
       <Sidebar onClick={(e: React.MouseEvent) => e.stopPropagation()}>
         <Header>
           <Title>Filtrar</Title>
-          <CloseIcon onClick={onClose} />
+          {/* eslint-disable-next-line max-len */}
+          {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
+          <div onClick={onClose}>x</div>
         </Header>
 
         <Content>

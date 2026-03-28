@@ -5,7 +5,6 @@ import { useState } from 'react';
 import Input from '@/components/Input';
 import ContainerPage from '@/components/ContainerPage/ContainerPage';
 import LockIcon from '@/components/Icons/LockIcon';
-import PenIcon from '@/components/Icons/PenIcon';
 import Button from '@/components/Button/Button';
 import ChangePasswordModal from '@/components/Modals/ChangePasswordModal/ChangePasswordModal';
 
@@ -67,7 +66,6 @@ const ConfigurationPage = () => {
               onClick={handleChangePassword}
               style={{ padding: '8px 24px', height: '40px' }}
             >
-              <PenIcon />
               Alterar senha
             </Button>
           </InputContainer>

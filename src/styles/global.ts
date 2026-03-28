@@ -63,7 +63,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }) => theme.fonts.area};
     font-weight: 400;
     text-rendering: optimizeLegibility;
-    background-color: #221f1f;
+    background-color: #111111;
     color: ${({ theme }) => theme.colors.black};
   }
 

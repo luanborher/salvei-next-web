@@ -10,9 +10,8 @@ import {
   ChangePasswordSchema,
   IChangePasswordSchema,
 } from '@/validations/LoginSchema';
-
 import Button from '@/components/Button/Button';
-import SaveIcon from '@/components/Icons/SaveIcon';
+
 import {
   ModalContainer,
   ButtonGroup,
@@ -147,7 +146,6 @@ const ChangePasswordModal: React.FC<SuccessModalProps> = ({
                   Cancelar
                 </Button>
                 <Button type="submit" style={{ width: '100%' }}>
-                  <SaveIcon />
                   Salvar
                 </Button>
               </ButtonGroup>

@@ -38,8 +38,8 @@ const area = localFont({
 //
 
 export const metadata: Metadata = {
-  title: 'Salvei - Entretenimento',
-  description: 'Salvei - Entretenimento',
+  title: 'Ticka',
+  description: 'Crie a lista que você quiser',
 };
 
 const RootLayout = ({

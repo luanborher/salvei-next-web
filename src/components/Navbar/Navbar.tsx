@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { FaList } from 'react-icons/fa6';
-
 import { useAuth } from '@/hooks/useAuth';
 
+import navLinks from './navLinks';
+
+import ArrowIcon from '../Icons/navbar/ArrowIcon';
 import SettingIcon from '../Icons/navbar/SettingIcon';
 import LogOffIcon from '../Icons/navbar/LogOffIcon';
-import ArrowIcon from '../Icons/navbar/ArrowIcon';
-import navLinks from './navLinks';
+import TickaIcon from '../Icons/TickaIcon';
+import TickaFullIcon from '../Icons/TickaFullIcon';
 
 import {
   ArrowBorder,
@@ -57,8 +58,11 @@ const Navbar = () => {
       onMouseLeave={() => setExpanded(false)}
     >
       <NavbarHeader>
-        <FaList color="white" size={28} onClick={() => setExpanded(false)} />
-        {expanded && 'Salvei'}
+        {expanded ? (
+          <TickaFullIcon onClick={() => setExpanded(false)} />
+        ) : (
+          <TickaIcon onClick={() => setExpanded(false)} />
+        )}
       </NavbarHeader>
 
       <NavWrapper open={expanded}>

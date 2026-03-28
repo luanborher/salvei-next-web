@@ -21,7 +21,7 @@ export const NavbarContainer = styled.div`
   gap: 12px;
   height: 100%;
   background: #000000;
-  border-right: 1px solid #d1d0d0d2;
+  border-right: 1px solid #d1d0d036;
   padding: 2.5px;
   transition: opacity 0.8s ease, max-width 0.8s ease;
   user-select: none;

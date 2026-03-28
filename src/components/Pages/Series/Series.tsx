@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import ContainerPage from '@/components/ContainerPage/ContainerPage';
-import HomeCircleIcon from '@/components/Icons/notFound/HomeCircle';
 import Input from '@/components/Input';
 import EntretenimentoCard from '@/components/Cards/EntretenimentoCard/EntretenimentoCard';
 import { seriesMock } from '@/mocks/series';
@@ -47,8 +46,6 @@ const Series = () => {
 
       {filteredContents?.length === 0 && (
         <NotFoundWrapper>
-          <HomeCircleIcon />
-
           <p>Nenhum conteúdo encontrado ainda</p>
         </NotFoundWrapper>
       )}

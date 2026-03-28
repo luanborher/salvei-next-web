@@ -3,11 +3,11 @@ export const theme = {
     area: 'var(--font-area), sans-serif',
   },
   colors: {
-    primary: '#11B3DB',
-    primary2: '#FF9D33',
-    primary3: '#FFB666',
-    primary4: '#FFCE99',
-    primary5: '#FFE7CC',
+    primary: '#35BCF6',
+    primary2: '#2F6BFF',
+    primary3: '#2F6BFF',
+    primary4: '#2F6BFF',
+    primary5: '#2F6BFF',
 
     secondary: '#342D23',
     secondary2: '#5D574F',

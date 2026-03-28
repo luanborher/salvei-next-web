@@ -26,6 +26,12 @@ const baseData = [
     'Guerreiras do K-Pop',
   ],
   [
+    'Justiça Artificial',
+    'https://m.media-amazon.com/images/S/pv-target-images/08def61c26e66ad21372e5f114a278e7b6e62210c6dcf60e392590afb5e95bd3.jpg',
+    'pendente',
+    'Justiça Artificial',
+  ],
+  [
     'Bailarina',
     'https://m.media-amazon.com/images/S/pv-target-images/fcb1373b253b3ece65e7153f526e962ccc3a1cb53f8ca9f138cd840903d996ea.jpg',
     'ativo',

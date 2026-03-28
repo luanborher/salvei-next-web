@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import EntretenimentoCard from '@/components/Cards/EntretenimentoCard/EntretenimentoCard';
 import ContainerPage from '@/components/ContainerPage/ContainerPage';
-import HomeCircleIcon from '@/components/Icons/notFound/HomeCircle';
 import Input from '@/components/Input';
 
 import { gamesMock } from '@/mocks/games';
@@ -49,8 +48,6 @@ const EnterprisesPage = () => {
 
       {filteredEnterprises?.length === 0 && (
         <NotFoundWrapper>
-          <HomeCircleIcon />
-
           <p>Nenhum conteúdo encontrado ainda</p>
         </NotFoundWrapper>
       )}

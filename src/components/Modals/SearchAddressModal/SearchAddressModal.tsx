@@ -3,7 +3,6 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 import ArrowLeftIcon from '@/components/Icons/ArrowLeftIcon';
 import Button from '@/components/Button/Button';
-import SaveIcon from '@/components/Icons/SaveIcon';
 
 import {
   ModalOverlay,
@@ -139,7 +138,6 @@ const SearchAddressModal = ({
             Cancelar
           </Button>
           <Button type="button" onClick={handleSave}>
-            <SaveIcon />
             Salvar
           </Button>
         </ButtonsRow>

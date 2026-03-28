@@ -5,7 +5,7 @@ export const ContainerPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  background-color: #221f1f;
+  background-color: #111111;
 `;
 
 export const TitleWrapper = styled.div`
