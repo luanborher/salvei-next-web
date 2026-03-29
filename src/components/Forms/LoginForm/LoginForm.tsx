@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/navigation';
 
 import { localStorageKeys } from '@/utils/localStorageKeys';
 import { ILoginForm, LoginSchema } from '@/validations/LoginSchema';
@@ -27,7 +26,6 @@ export interface ILoginResponse {
 }
 
 const Login = () => {
-  const router = useRouter();
   const { setUser } = useAuth();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,8 +58,6 @@ const Login = () => {
       localStorage.setItem(localStorageKeys.user, JSON.stringify(data.user));
 
       setUser(data.user);
-
-      router.push('/home');
     } catch (error) {
       console.error('Erro ao fazer login:', error);
     } finally {

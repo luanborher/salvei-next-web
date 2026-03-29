@@ -131,7 +131,6 @@ const Navbar = () => {
             <NavIconWrapper>
               <SettingIcon />
             </NavIconWrapper>
-
             {expanded && (
               <NavLinkText selected={pathname.startsWith('/configuration')}>
                 Configurações
@@ -139,16 +138,10 @@ const Navbar = () => {
             )}
           </LogoffButton>
 
-          <LogoffButton
-            onClick={() => {
-              logout();
-              router.push('/');
-            }}
-          >
+          <LogoffButton onClick={logout}>
             <NavIconWrapper>
               <LogOffIcon />
             </NavIconWrapper>
-
             {expanded && <NavLinkText>Sair</NavLinkText>}
           </LogoffButton>
         </BottomWrapper>

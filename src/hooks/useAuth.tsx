@@ -66,6 +66,7 @@ const AuthProvider = ({ children }: ChildrenProps) => {
     localStorage.removeItem(localStorageKeys.accessToken);
     localStorage.removeItem(localStorageKeys.refreshToken);
     setUser({} as User);
+    redirect('/');
   };
 
   const publicRoutes = ['/'];
@@ -79,7 +80,7 @@ const AuthProvider = ({ children }: ChildrenProps) => {
   }
 
   if (isAuthenticated && publicRoutes.includes(pathname) && pathname === '/') {
-    redirect('/home');
+    redirect('/collection');
   }
 
   return (

@@ -4,6 +4,9 @@ import { FaTrophy } from 'react-icons/fa';
 import { LocationIcon } from '@/components/Icons/enterprises/CardIcons';
 
 import { IoCheckmarkCircle, IoCheckmarkCircleOutline } from 'react-icons/io5';
+import handleError from '@/utils/handleToast';
+import api from '@/services/api';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   CardContainer,
   ImageContainer,
@@ -25,15 +28,18 @@ export interface EnterpriseCardProps {
   status: 'PENDING' | 'COMPLETED';
   imageUrl: string;
   platinum?: boolean;
+  documentId: number;
 }
 
-const EntretenimentoCard: React.FC<EnterpriseCardProps> = ({
+const GridCard: React.FC<EnterpriseCardProps> = ({
   title,
   description,
   status,
   imageUrl,
   platinum,
+  documentId,
 }) => {
+  const query = useQueryClient();
   const menuRef = useRef<HTMLDivElement>(null);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,17 +48,23 @@ const EntretenimentoCard: React.FC<EnterpriseCardProps> = ({
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const onMarkAsCompleted = async () => {
+    try {
+      await api.patch(`/items/${documentId}`);
+
+      query.invalidateQueries({ queryKey: ['getCollectionById'] });
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsMenuOpen(false);
       }
     };
-
-    if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
+    if (isMenuOpen) document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -64,11 +76,11 @@ const EntretenimentoCard: React.FC<EnterpriseCardProps> = ({
         <EnterpriseImage src={imageUrl} alt={title} />
 
         {status === 'PENDING' ? (
-          <StatusIcon>
+          <StatusIcon onClick={onMarkAsCompleted}>
             <IoCheckmarkCircleOutline size={30} color="#00FF0DB0" />
           </StatusIcon>
         ) : (
-          <StatusIcon>
+          <StatusIcon onClick={onMarkAsCompleted}>
             <IoCheckmarkCircle size={30} color="#00FF0DB0" />
           </StatusIcon>
         )}
@@ -98,4 +110,4 @@ const EntretenimentoCard: React.FC<EnterpriseCardProps> = ({
   );
 };
 
-export default EntretenimentoCard;
+export default GridCard;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import ContainerPage from '@/components/ContainerPage/ContainerPage';
-import EntretenimentoCard from '@/components/Cards/EntretenimentoCard/EntretenimentoCard';
+import GridCard from '@/components/Cards/GridCard/GridCard';
 import Input from '@/components/Input';
 
 import { useCollectionById } from '@/services/collections/collections';
@@ -46,8 +46,9 @@ const CollectionPage = ({ id }: { id: string }) => {
       <List>
         {filteredContents?.length > 0 &&
           filteredContents.map(enterprise => (
-            <EntretenimentoCard
+            <GridCard
               key={enterprise.id}
+              documentId={enterprise.id}
               title={enterprise.name}
               description={enterprise.description}
               status={enterprise.status}
