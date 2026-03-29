@@ -32,7 +32,7 @@ const ConfigurationPage = () => {
           <InputContainer>
             <Input
               label="Nome completo"
-              value={user?.name}
+              value={user?.name || ''}
               disabled
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
               style={{ color: '#F0ECEC' }}
@@ -42,7 +42,7 @@ const ConfigurationPage = () => {
           <InputContainer>
             <Input
               label="CPF"
-              value={cpfMask(user?.cpf)}
+              value={cpfMask(user?.cpf || '')}
               disabled
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
               style={{ color: '#F0ECEC' }}
@@ -52,7 +52,7 @@ const ConfigurationPage = () => {
           <InputContainer>
             <Input
               label="Telefone"
-              value={telephoneMask(user?.phone)}
+              value={telephoneMask(user?.phone || '')}
               disabled
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
               style={{ color: '#F0ECEC' }}
@@ -62,7 +62,7 @@ const ConfigurationPage = () => {
           <InputContainer>
             <Input
               label="E-mail"
-              value={user?.email}
+              value={user?.email || ''}
               disabled
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
               style={{ color: '#F0ECEC' }}

@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 interface StatusBadgeProps {
-  status: 'ativo' | 'pendente' | 'em-andamento';
+  status: 'PENDING' | 'COMPLETED';
 }
 
 export const CardContainer = styled.div<StatusBadgeProps>`
@@ -25,10 +25,9 @@ export const CardContainer = styled.div<StatusBadgeProps>`
 
   ${({ status }) => {
     switch (status) {
-      case 'ativo':
+      case 'COMPLETED':
         return ' opacity: 0.3;';
-      case 'pendente':
-      case 'em-andamento':
+      case 'PENDING':
         return 'opacity: 1;';
     }
   }}
@@ -82,11 +81,9 @@ export const StatusBadge = styled.div<StatusBadgeProps>`
 
   ${({ status }) => {
     switch (status) {
-      case 'ativo':
+      case 'COMPLETED':
         return ' background: #34C447CC;';
-      case 'pendente':
-        return ' background: #D48427E0; ';
-      case 'em-andamento':
+      case 'PENDING':
         return ' background: #747373; ';
     }
   }}

@@ -32,12 +32,18 @@ const Login = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const objDev = {
+    email: 'luan.borher@gmail.com',
+    password: '12345678',
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ILoginForm>({
     resolver: yupResolver(LoginSchema),
+    defaultValues: process.env.NODE_ENV === 'development' ? objDev : {},
   });
 
   const onSubmit: SubmitHandler<ILoginForm> = async (form: ILoginForm) => {
@@ -55,7 +61,7 @@ const Login = () => {
 
       setUser(data.user);
 
-      router.push('/jogos');
+      router.push('/home');
     } catch (error) {
       console.error('Erro ao fazer login:', error);
     } finally {
@@ -93,7 +99,7 @@ const Login = () => {
         </InputForm>
 
         <ButtonLogin onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>
-          Entrar
+          {isSubmitting ? 'Entrando...' : 'Entrar'}
         </ButtonLogin>
       </LoginForm>
     </Center>

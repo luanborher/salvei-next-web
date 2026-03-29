@@ -22,7 +22,7 @@ import {
 export interface EnterpriseCardProps {
   title: string;
   description: string;
-  status: 'ativo' | 'pendente' | 'em-andamento';
+  status: 'PENDING' | 'COMPLETED';
   imageUrl: string;
   platinum?: boolean;
 }
@@ -63,7 +63,7 @@ const EntretenimentoCard: React.FC<EnterpriseCardProps> = ({
       <ImageContainer ref={menuRef}>
         <EnterpriseImage src={imageUrl} alt={title} />
 
-        {status === 'em-andamento' || status === 'pendente' ? (
+        {status === 'PENDING' ? (
           <StatusIcon>
             <IoCheckmarkCircleOutline size={30} color="#00FF0DB0" />
           </StatusIcon>

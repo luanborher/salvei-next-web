@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const List = styled.div`
-  flex-wrap: wrap;
   display: flex;
   gap: 16px;
   row-gap: 24px;
-  align-items: center;
   justify-items: center;
+  flex-direction: column;
   margin-top: 24px;
   justify-content: center;
+
+  color: #fff;
 `;
 
 export const ActionsRow = styled.div`

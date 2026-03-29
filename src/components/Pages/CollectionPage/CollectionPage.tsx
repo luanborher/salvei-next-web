@@ -1,19 +1,26 @@
 import { useState } from 'react';
 
 import ContainerPage from '@/components/ContainerPage/ContainerPage';
-import Input from '@/components/Input';
 import EntretenimentoCard from '@/components/Cards/EntretenimentoCard/EntretenimentoCard';
-import { moviesMock } from '@/mocks/filmes';
+import Input from '@/components/Input';
 
+import { useCollectionById } from '@/services/collections/collections';
+
+import Button from '@/components/Button/Button';
+import { FaPlus } from 'react-icons/fa';
+import AddItemModal from '@/components/Modals/AddItemModal/AddItemModal';
 import { ActionsRow, List, NotFoundWrapper } from './styles';
 
-const Filmes = () => {
-  const [contents] = useState(moviesMock || []);
+const CollectionPage = ({ id }: { id: string }) => {
   const [search, setSearch] = useState('');
+  const [showAddModal, setShowAddModal] = useState(false);
 
-  const filteredContents = contents.filter(enterprise =>
-    enterprise.title.toLowerCase().includes(search.toLowerCase()),
-  );
+  const { data: collection } = useCollectionById(id);
+
+  const filteredContents =
+    collection?.filter(enterprise =>
+      enterprise.name.toLowerCase().includes(search.toLowerCase()),
+    ) || [];
 
   const renderActions = () => {
     return (
@@ -25,6 +32,11 @@ const Filmes = () => {
           onChange={e => setSearch(e?.target?.value || '')}
           style={{ width: '525px' }}
         />
+
+        <Button type="button" onClick={() => setShowAddModal(true)}>
+          <FaPlus size={16} />
+          Adicionar
+        </Button>
       </ActionsRow>
     );
   };
@@ -36,21 +48,27 @@ const Filmes = () => {
           filteredContents.map(enterprise => (
             <EntretenimentoCard
               key={enterprise.id}
-              title={enterprise.title}
-              description={enterprise.series}
+              title={enterprise.name}
+              description={enterprise.description}
               status={enterprise.status}
-              imageUrl={enterprise.imageUrl}
+              imageUrl={enterprise.image}
             />
           ))}
       </List>
 
       {filteredContents?.length === 0 && (
         <NotFoundWrapper>
-          <p>Nenhum conteúdo encontrado ainda</p>
+          <p>Nenhum item foi cadastrado ainda</p>
         </NotFoundWrapper>
       )}
+
+      <AddItemModal
+        documentId={id}
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+      />
     </ContainerPage>
   );
 };
 
-export default Filmes;
+export default CollectionPage;

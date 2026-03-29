@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
+import { MdLocalMovies } from 'react-icons/md';
 
-import navLinks from './navLinks';
+import { useCollections } from '@/services/collections/collections';
 
 import ArrowIcon from '../Icons/navbar/ArrowIcon';
 import SettingIcon from '../Icons/navbar/SettingIcon';
@@ -27,12 +28,24 @@ import {
 
 const Navbar = () => {
   const router = useRouter();
-  const { logout, isAuthenticated } = useAuth();
   const pathname = usePathname();
+  const { logout, isAuthenticated } = useAuth();
 
-  const [expanded, setExpanded] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
   const navIconsRef = useRef<HTMLDivElement>(null);
+
+  const [expanded, setExpanded] = useState(false);
+
+  const { data: collections } = useCollections({});
+
+  const navLinks =
+    collections?.map(collection => {
+      return {
+        href: `/collection/${collection.id}`,
+        icon: <MdLocalMovies size={26} />,
+        text: collection.name,
+      };
+    }) || [];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -43,9 +56,7 @@ const Navbar = () => {
         setExpanded(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -114,7 +125,7 @@ const Navbar = () => {
                 return;
               }
 
-              router.push('/login');
+              router.push('/');
             }}
           >
             <NavIconWrapper>
@@ -131,7 +142,7 @@ const Navbar = () => {
           <LogoffButton
             onClick={() => {
               logout();
-              router.push('/login');
+              router.push('/');
             }}
           >
             <NavIconWrapper>

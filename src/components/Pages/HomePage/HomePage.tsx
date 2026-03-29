@@ -2,18 +2,19 @@ import { useState } from 'react';
 
 import ContainerPage from '@/components/ContainerPage/ContainerPage';
 import Input from '@/components/Input';
-import EntretenimentoCard from '@/components/Cards/EntretenimentoCard/EntretenimentoCard';
-import { seriesMock } from '@/mocks/series';
+import { useCollections } from '@/services/collections/collections';
 
 import { ActionsRow, List, NotFoundWrapper } from './styles';
 
-const Series = () => {
-  const [contents] = useState(seriesMock || []);
+const HomePage = () => {
   const [search, setSearch] = useState('');
 
-  const filteredContents = contents.filter(enterprise =>
-    enterprise.title.toLowerCase().includes(search.toLowerCase()),
-  );
+  const { data: collection } = useCollections({});
+
+  const filteredContents =
+    collection?.filter(enterprise =>
+      enterprise.name.toLowerCase().includes(search.toLowerCase()),
+    ) || [];
 
   const renderActions = () => {
     return (
@@ -30,27 +31,24 @@ const Series = () => {
   };
 
   return (
-    <ContainerPage title="Séries" rightContent={renderActions()}>
+    <ContainerPage title="Suas coleções" rightContent={renderActions()}>
       <List>
         {filteredContents?.length > 0 &&
           filteredContents.map(enterprise => (
-            <EntretenimentoCard
-              key={enterprise.id}
-              title={enterprise.title}
-              description={enterprise.series}
-              status={enterprise.status}
-              imageUrl={enterprise.imageUrl}
-            />
+            <div>
+              <div>{enterprise.name}</div>
+              <div>{enterprise.description}</div>
+            </div>
           ))}
       </List>
 
       {filteredContents?.length === 0 && (
         <NotFoundWrapper>
-          <p>Nenhum conteúdo encontrado ainda</p>
+          <p>Nenhuma coleção cadastrada ainda</p>
         </NotFoundWrapper>
       )}
     </ContainerPage>
   );
 };
 
-export default Series;
+export default HomePage;

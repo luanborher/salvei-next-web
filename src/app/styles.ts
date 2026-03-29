@@ -1,18 +1,32 @@
 import styled from 'styled-components';
 
-export const MasterLayoutContainer = styled.div`
-  position: relative;
+export const Main = styled.main`
   width: 100%;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.primary};
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.white};
+
+  @media (max-width: 1090px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
-export const MasterLayoutContent = styled.div`
+export const ImageCOntainer = styled.div`
   width: 100%;
-  overflow: auto;
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 1090px) {
+    display: none;
+  }
+`;
+
+export const Image = styled.img`
+  width: 450px;
 `;

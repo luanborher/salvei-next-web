@@ -68,7 +68,7 @@ const AuthProvider = ({ children }: ChildrenProps) => {
     setUser({} as User);
   };
 
-  const publicRoutes = ['/', '/login'];
+  const publicRoutes = ['/'];
 
   if (loading) {
     return null;
@@ -79,7 +79,7 @@ const AuthProvider = ({ children }: ChildrenProps) => {
   }
 
   if (isAuthenticated && publicRoutes.includes(pathname) && pathname === '/') {
-    redirect('/jogos');
+    redirect('/home');
   }
 
   return (

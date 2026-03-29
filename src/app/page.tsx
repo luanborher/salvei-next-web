@@ -1,18 +1,18 @@
 'use client';
 
-import EnterprisesPage from '@/components/Pages/EnterprisesPage/EnterprisesPage';
-import Navbar from '@/components/Navbar/Navbar';
-import { MasterLayoutContainer, MasterLayoutContent } from './styles';
+import LoginForm from '@/components/Forms/LoginForm/LoginForm';
 
-const Enterprises = () => {
+import { ImageCOntainer, Image, Main } from './styles';
+
+const Login = () => {
   return (
-    <MasterLayoutContainer>
-      <Navbar />
-      <MasterLayoutContent id="page">
-        <EnterprisesPage />
-      </MasterLayoutContent>
-    </MasterLayoutContainer>
+    <Main>
+      <ImageCOntainer>
+        <Image src="/ticka_logo_full.svg" />
+      </ImageCOntainer>
+      <LoginForm />
+    </Main>
   );
 };
 
-export default Enterprises;
+export default Login;
