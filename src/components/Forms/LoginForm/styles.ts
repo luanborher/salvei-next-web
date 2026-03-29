@@ -64,11 +64,21 @@ export const InputForm = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 206px;
+  width: 80px;
+
+  @media (max-width: 348px) {
+    display: none;
+  }
 `;
 
 export const HeaderTitle = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 16px;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+  }
 `;

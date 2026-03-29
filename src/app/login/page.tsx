@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <Main>
       <ImageCOntainer>
-        <Image src="/img/login/logo.svg" />
+        <Image src="/ticka_logo_full.svg" />
       </ImageCOntainer>
       <LoginForm />
     </Main>

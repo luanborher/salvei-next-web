@@ -65,7 +65,6 @@ const AuthProvider = ({ children }: ChildrenProps) => {
     localStorage.removeItem(localStorageKeys.user);
     localStorage.removeItem(localStorageKeys.accessToken);
     localStorage.removeItem(localStorageKeys.refreshToken);
-
     setUser({} as User);
   };
 

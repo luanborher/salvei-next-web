@@ -66,11 +66,13 @@ const Login = () => {
   return (
     <Center>
       <LoginForm>
-        <Image src="/ticka_logo_full.svg" alt="logo-login-form" />
-
         <HeaderTitle>
-          <TitleForm>Área de acesso - Master</TitleForm>
-          <SubtitleForm>Insira seus dados para continuar</SubtitleForm>
+          <Image src="/ticka_icon.svg" alt="logo-login-form" />
+
+          <div className="title">
+            <TitleForm>Área de acesso</TitleForm>
+            <SubtitleForm>Insira seus dados para continuar</SubtitleForm>
+          </div>
         </HeaderTitle>
 
         <InputForm>

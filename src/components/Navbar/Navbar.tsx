@@ -27,7 +27,7 @@ import {
 
 const Navbar = () => {
   const router = useRouter();
-  const { logout } = useAuth();
+  const { logout, isAuthenticated } = useAuth();
   const pathname = usePathname();
 
   const [expanded, setExpanded] = useState(false);
@@ -108,7 +108,14 @@ const Navbar = () => {
         <BottomWrapper>
           <LogoffButton
             selected={pathname.startsWith('/configuration')}
-            onClick={() => router.push('/configuration')}
+            onClick={() => {
+              if (isAuthenticated) {
+                router.push('/configuration');
+                return;
+              }
+
+              router.push('/login');
+            }}
           >
             <NavIconWrapper>
               <SettingIcon />
@@ -121,7 +128,12 @@ const Navbar = () => {
             )}
           </LogoffButton>
 
-          <LogoffButton onClick={() => logout()}>
+          <LogoffButton
+            onClick={() => {
+              logout();
+              router.push('/login');
+            }}
+          >
             <NavIconWrapper>
               <LogOffIcon />
             </NavIconWrapper>
