@@ -2,6 +2,8 @@ import Providers from '@/components/Providers/Providers';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
+import 'react-loading-skeleton/dist/skeleton.css';
+
 // importação de fontes
 
 const area = localFont({

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import { MdLocalMovies } from 'react-icons/md';
+import Skeleton from 'react-loading-skeleton';
+import { FaMasksTheater } from 'react-icons/fa6';
 
 import { useCollections } from '@/services/collections/collections';
-
 import ArrowIcon from '../Icons/navbar/ArrowIcon';
 import SettingIcon from '../Icons/navbar/SettingIcon';
 import LogOffIcon from '../Icons/navbar/LogOffIcon';
@@ -36,13 +36,13 @@ const Navbar = () => {
 
   const [expanded, setExpanded] = useState(false);
 
-  const { data: collections } = useCollections({});
+  const { data: collections, isLoading } = useCollections({});
 
   const navLinks =
     collections?.map(collection => {
       return {
         href: `/collection/${collection.id}`,
-        icon: <MdLocalMovies size={26} />,
+        icon: <FaMasksTheater size={26} />,
         text: collection.name,
       };
     }) || [];
@@ -85,28 +85,39 @@ const Navbar = () => {
           </ArrowWrapper>
 
           <NavIconsMenu ref={navIconsRef}>
-            {navLinks.map(({ href, icon, text }) => {
-              return (
-                <NavLink
-                  key={href}
-                  href={href}
-                  selected={pathname.startsWith(href)}
-                  onMouseEnter={() => null}
-                  onMouseLeave={() => null}
-                  onClick={() => {
-                    if (pathname.startsWith(href)) setExpanded(!expanded);
-                  }}
-                >
-                  <NavIconWrapper>{icon}</NavIconWrapper>
+            {isLoading ? (
+              <Skeleton
+                count={5}
+                width={expanded ? '100%' : 35}
+                height={35}
+                baseColor="#202020"
+                highlightColor="#444"
+                style={{ marginBottom: '10px' }}
+              />
+            ) : (
+              navLinks?.map(({ href, icon, text }) => {
+                return (
+                  <NavLink
+                    key={href}
+                    href={`${href}?name=${encodeURIComponent(text)}`}
+                    selected={pathname.startsWith(href)}
+                    onMouseEnter={() => null}
+                    onMouseLeave={() => null}
+                    onClick={() => {
+                      if (pathname.startsWith(href)) setExpanded(!expanded);
+                    }}
+                  >
+                    <NavIconWrapper>{icon}</NavIconWrapper>
 
-                  {expanded && (
-                    <NavLinkText selected={pathname.startsWith(href)}>
-                      {text}
-                    </NavLinkText>
-                  )}
-                </NavLink>
-              );
-            })}
+                    {expanded && (
+                      <NavLinkText selected={pathname.startsWith(href)}>
+                        {text}
+                      </NavLinkText>
+                    )}
+                  </NavLink>
+                );
+              })
+            )}
           </NavIconsMenu>
 
           <ArrowWrapper>

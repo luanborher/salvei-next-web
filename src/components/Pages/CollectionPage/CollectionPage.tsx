@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import ContainerPage from '@/components/ContainerPage/ContainerPage';
 import GridCard from '@/components/Cards/GridCard/GridCard';
@@ -11,11 +12,11 @@ import { FaPlus } from 'react-icons/fa';
 import AddItemModal from '@/components/Modals/AddItemModal/AddItemModal';
 import { ActionsRow, List, NotFoundWrapper } from './styles';
 
-const CollectionPage = ({ id }: { id: string }) => {
+const CollectionPage = ({ id, name }: { id: string; name: string }) => {
   const [search, setSearch] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
 
-  const { data: collection } = useCollectionById(id);
+  const { data: collection, isLoading } = useCollectionById(id);
 
   const filteredContents =
     collection?.filter(enterprise =>
@@ -33,18 +34,28 @@ const CollectionPage = ({ id }: { id: string }) => {
           style={{ width: '525px' }}
         />
 
-        <Button type="button" onClick={() => setShowAddModal(true)}>
-          <FaPlus size={16} />
-          Adicionar
-        </Button>
+        {filteredContents?.length > 0 && (
+          <Button type="button" onClick={() => setShowAddModal(true)}>
+            <FaPlus size={16} />
+            Adicionar
+          </Button>
+        )}
       </ActionsRow>
     );
   };
 
   return (
-    <ContainerPage title="Séries" rightContent={renderActions()}>
+    <ContainerPage title={name} rightContent={renderActions()}>
       <List>
-        {filteredContents?.length > 0 &&
+        {isLoading ? (
+          <Skeleton
+            count={5}
+            width="100%"
+            height={100}
+            baseColor="#202020"
+            highlightColor="#444"
+          />
+        ) : filteredContents?.length > 0 ? (
           filteredContents.map(enterprise => (
             <GridCard
               key={enterprise.id}
@@ -54,14 +65,18 @@ const CollectionPage = ({ id }: { id: string }) => {
               status={enterprise.status}
               imageUrl={enterprise.image}
             />
-          ))}
-      </List>
+          ))
+        ) : (
+          <NotFoundWrapper>
+            <p>Nenhum item foi cadastrado ainda</p>
 
-      {filteredContents?.length === 0 && (
-        <NotFoundWrapper>
-          <p>Nenhum item foi cadastrado ainda</p>
-        </NotFoundWrapper>
-      )}
+            <Button type="button" onClick={() => setShowAddModal(true)}>
+              <FaPlus size={16} />
+              Adicionar
+            </Button>
+          </NotFoundWrapper>
+        )}
+      </List>
 
       <AddItemModal
         documentId={id}
