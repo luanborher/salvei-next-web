@@ -69,6 +69,7 @@ const ChangePasswordModal: React.FC<SuccessModalProps> = ({
     (e: React.MouseEvent) => {
       if (e.target === e.currentTarget && mouseDownTarget === e.target) {
         onClose();
+        reset({});
       }
       setMouseDownTarget(null);
     },
@@ -94,6 +95,7 @@ const ChangePasswordModal: React.FC<SuccessModalProps> = ({
                   placeholder="Digite sua senha atual"
                   error={errors.currentPassword?.message}
                   {...register('currentPassword')}
+                  style={{ color: '#ffffff' }}
                 />
 
                 <Input
@@ -102,6 +104,7 @@ const ChangePasswordModal: React.FC<SuccessModalProps> = ({
                   placeholder="Digite a nova senha"
                   error={errors.password?.message}
                   {...register('password')}
+                  style={{ color: '#ffffff' }}
                 />
 
                 <InputWrapper>
@@ -130,6 +133,7 @@ const ChangePasswordModal: React.FC<SuccessModalProps> = ({
                   placeholder="Confirme a nova senha"
                   error={errors.confirmPassword?.message}
                   {...register('confirmPassword')}
+                  style={{ color: '#ffffff' }}
                 />
               </ModalContent>
 
@@ -140,6 +144,7 @@ const ChangePasswordModal: React.FC<SuccessModalProps> = ({
                   style={{ width: '100%' }}
                   onClick={() => {
                     clearErrors();
+                    reset({});
                     onClose();
                   }}
                 >
@@ -160,6 +165,7 @@ const ChangePasswordModal: React.FC<SuccessModalProps> = ({
         confirmText="Voltar"
         onConfirm={() => {
           setSuccessModal(false);
+          reset({});
           onClose();
         }}
       >

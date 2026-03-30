@@ -99,6 +99,7 @@ const AddItemModal: React.FC<SuccessModalProps> = ({
                   placeholder="Digite o nome"
                   error={errors.name?.message}
                   {...register('name', { required: true })}
+                  style={{ color: '#ffffff' }}
                 />
 
                 <Input
@@ -106,6 +107,7 @@ const AddItemModal: React.FC<SuccessModalProps> = ({
                   placeholder="Digite a descrição"
                   error={errors.description?.message}
                   {...register('description', { required: true })}
+                  style={{ color: '#ffffff' }}
                 />
 
                 <Input
@@ -113,6 +115,7 @@ const AddItemModal: React.FC<SuccessModalProps> = ({
                   placeholder="Cole a URL da imagem"
                   error={errors.image?.message}
                   {...register('image', { required: true })}
+                  style={{ color: '#ffffff' }}
                 />
 
                 <div style={{ margin: '12px 0' }}>

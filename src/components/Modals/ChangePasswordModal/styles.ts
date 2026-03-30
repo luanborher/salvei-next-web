@@ -9,7 +9,7 @@ export const ModalForm = styled.form`
   flex-direction: column;
   gap: 16px;
   border-radius: 12px;
-  background-color: #fefefd;
+  background-color: #414141;
   padding: 24px;
   box-shadow: 0px 0px 10px 0px #00000040;
 `;

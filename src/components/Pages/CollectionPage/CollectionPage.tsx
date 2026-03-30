@@ -31,7 +31,7 @@ const CollectionPage = ({ id, name }: { id: string; name: string }) => {
           isFilter
           value={search}
           onChange={e => setSearch(e?.target?.value || '')}
-          style={{ width: '525px' }}
+          style={{ width: '525px', color: '#fff' }}
         />
 
         {filteredContents?.length > 0 && (

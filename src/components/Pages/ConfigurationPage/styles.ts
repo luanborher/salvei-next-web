@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const ConfigurationContainer = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 16px;
-  max-width: 667px;
 `;
 
 export const InputContainer = styled.div`
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -24,4 +25,11 @@ export const LockIconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const Image = styled.img`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
 `;

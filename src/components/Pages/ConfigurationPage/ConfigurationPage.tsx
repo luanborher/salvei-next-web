@@ -5,13 +5,15 @@ import { useState } from 'react';
 import Input from '@/components/Input';
 import ContainerPage from '@/components/ContainerPage/ContainerPage';
 import LockIcon from '@/components/Icons/LockIcon';
-import Button from '@/components/Button/Button';
 import ChangePasswordModal from '@/components/Modals/ChangePasswordModal/ChangePasswordModal';
+import Button from '@/components/Button/Button';
 import { useAuth } from '@/hooks/useAuth';
 import { cpfMask, telephoneMask } from '@/utils/marks';
 
+import { FaPen } from 'react-icons/fa';
 import {
   ConfigurationContainer,
+  Image,
   InputContainer,
   LockIconWrapper,
 } from './styles';
@@ -29,6 +31,8 @@ const ConfigurationPage = () => {
     <>
       <ContainerPage title="Configurações">
         <ConfigurationContainer>
+          <Image src={user?.photo || '/ticka_logo.svg'} />
+
           <InputContainer>
             <Input
               label="Nome completo"
@@ -37,9 +41,7 @@ const ConfigurationPage = () => {
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
               style={{ color: '#F0ECEC' }}
             />
-          </InputContainer>
 
-          <InputContainer>
             <Input
               label="CPF"
               value={cpfMask(user?.cpf || '')}
@@ -57,9 +59,7 @@ const ConfigurationPage = () => {
               styleLabel={{ fontWeight: 600, color: '#F0ECEC' }}
               style={{ color: '#F0ECEC' }}
             />
-          </InputContainer>
 
-          <InputContainer>
             <Input
               label="E-mail"
               value={user?.email || ''}
@@ -72,19 +72,29 @@ const ConfigurationPage = () => {
               <LockIcon />
             </LockIconWrapper>
           </InputContainer>
-
-          <InputContainer style={{ alignItems: 'end' }}>
-            <div />
-
-            <Button
-              type="button"
-              onClick={handleChangePassword}
-              style={{ padding: '8px 24px', height: '40px' }}
-            >
-              Alterar senha
-            </Button>
-          </InputContainer>
         </ConfigurationContainer>
+
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            padding: '0 24px',
+          }}
+        >
+          <Button
+            type="button"
+            onClick={handleChangePassword}
+            style={{
+              padding: '8px 24px',
+              width: '210px',
+              height: '40px',
+            }}
+          >
+            <FaPen />
+            Alterar senha
+          </Button>
+        </div>
       </ContainerPage>
 
       <ChangePasswordModal

@@ -18,10 +18,9 @@ export const StyledButton = styled.button<{ $outline?: boolean }>`
   line-height: 26px;
   color: ${({ theme, $outline }) =>
     $outline ? theme.colors.primary : '#ffffff'};
-  transition: background 0.2s ease-in-out;
+  transition: opacity 0.3s ease;
 
   &:hover {
-    background: ${({ theme, $outline }) =>
-      $outline ? '#F7F2F2' : theme.colors.primary2};
+    opacity: 0.8;
   }
 `;
