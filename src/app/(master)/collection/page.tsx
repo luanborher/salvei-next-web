@@ -18,6 +18,7 @@ const CollectionInitialPage = () => {
           height={100}
           baseColor="#202020"
           highlightColor="#444"
+          borderRadius={12}
         />
       </ContainerPage>
     );

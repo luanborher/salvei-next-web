@@ -13,12 +13,6 @@ const baseData = [
   ['The Office', 'tof', 0],
   ['Friends', 'fds', 0],
   ['How I Met Your Mother', 'hmy', 0],
-  ['Everybody Hates Chris', 'ehc', 0],
-  ['Eu, a Patroa e as Crianças', 'epc', 0],
-  ['Um Maluco no Pedaço', 'ump', 0],
-  ['As visôes da Raven', 'rav', 0],
-  ['Três é demais', 'fll', 0],
-  ['Chaves', 'chv', 0],
 ] as const;
 
 const imgs: Record<string, string> = {
@@ -28,12 +22,6 @@ const imgs: Record<string, string> = {
   fds: 'https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/52dae4c7-2ab1-4bb9-ab1c-8100fd54e2f9/07da7aca-c0f3-11f0-b033-0affc374d9d9?host=wbd-images.prod-vod.h264.io&partner=beamcom',
   hmy: 'https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/8436a6b7-df2e-45db-865a-124b55cd2424/compose?aspectRatio=1.78&format=webp&width=1200',
   tmf: 'https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/77daa47b-1d60-450f-849a-e10cad30f871/compose?aspectRatio=1.78&format=webp&width=1200',
-  ehc: 'https://m.media-amazon.com/images/S/pv-target-images/43adb6b4c5b1f678104c335c25d4159a996b38f9d8d8aa4788993240147baf5b.jpg',
-  epc: 'https://m.media-amazon.com/images/S/pv-target-images/1527c8b7bf5e6faefd657880ea612176132e1f042dc13616c39faa4b3d6d7114.jpg',
-  ump: 'https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/d3f86fb1-c3d6-4715-874a-579689f5f437/aec7d238ffd6fca252a0f3555ec9b06426203c7d.jpg?host=wbd-images.prod-vod.h264.io&partner=beamcom',
-  rav: 'https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/cff7cfbd-47c9-4528-bf9d-c472093cffc5/compose?aspectRatio=1.78&format=webp&width=1200',
-  fll: 'https://s2.glbimg.com/F3Dm3RVJ52OI87J6dtzy5rHbngk=/smart/e.glbimg.com/og/ed/f/original/2014/08/27/full_house.jpg',
-  chv: 'https://img.odcdn.com.br/wp-content/uploads/2025/10/jim-1-1920x1080.jpg',
 };
 
 const statuses = ['ativo', 'pendente', 'em-andamento'] as const;

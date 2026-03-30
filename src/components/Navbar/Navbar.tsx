@@ -93,6 +93,7 @@ const Navbar = () => {
                 baseColor="#202020"
                 highlightColor="#444"
                 style={{ marginBottom: '10px' }}
+                borderRadius={12}
               />
             ) : (
               navLinks?.map(({ href, icon, text }) => {

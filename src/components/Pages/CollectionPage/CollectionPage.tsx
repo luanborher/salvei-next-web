@@ -54,6 +54,7 @@ const CollectionPage = ({ id, name }: { id: string; name: string }) => {
             height={100}
             baseColor="#202020"
             highlightColor="#444"
+            borderRadius={12}
           />
         ) : filteredContents?.length > 0 ? (
           filteredContents.map(enterprise => (
@@ -64,6 +65,7 @@ const CollectionPage = ({ id, name }: { id: string; name: string }) => {
               description={enterprise.description}
               status={enterprise.status}
               imageUrl={enterprise.image}
+              updating={isLoading}
             />
           ))
         ) : (

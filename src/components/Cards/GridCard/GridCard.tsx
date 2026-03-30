@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaTrophy } from 'react-icons/fa';
+import { IoCheckmarkCircle, IoCheckmarkCircleOutline } from 'react-icons/io5';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { LocationIcon } from '@/components/Icons/enterprises/CardIcons';
-
-import { IoCheckmarkCircle, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import handleError from '@/utils/handleToast';
 import api from '@/services/api';
-import { useQueryClient } from '@tanstack/react-query';
+
+import Skeleton from 'react-loading-skeleton';
 import {
   CardContainer,
   ImageContainer,
@@ -28,6 +29,7 @@ export interface EnterpriseCardProps {
   status: 'PENDING' | 'COMPLETED';
   imageUrl: string;
   platinum?: boolean;
+  updating?: boolean;
   documentId: number;
 }
 
@@ -37,24 +39,32 @@ const GridCard: React.FC<EnterpriseCardProps> = ({
   status,
   imageUrl,
   platinum,
+  updating,
   documentId,
 }) => {
   const query = useQueryClient();
   const menuRef = useRef<HTMLDivElement>(null);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const onMarkAsCompleted = async () => {
+    setLoading(true);
+
     try {
       await api.patch(`/items/${documentId}`);
-
-      query.invalidateQueries({ queryKey: ['getCollectionById'] });
+      query.invalidateQueries({
+        queryKey: ['getCollectionById'],
+        exact: false,
+      });
     } catch (error) {
       handleError(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -69,6 +79,18 @@ const GridCard: React.FC<EnterpriseCardProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isMenuOpen]);
+
+  if (loading || updating) {
+    return (
+      <Skeleton
+        width={392}
+        height={312}
+        baseColor="#202020"
+        highlightColor="#444"
+        borderRadius={12}
+      />
+    );
+  }
 
   return (
     <CardContainer status={status}>
