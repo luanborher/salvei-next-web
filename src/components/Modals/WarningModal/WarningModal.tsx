@@ -59,10 +59,10 @@ const WarningModal = ({
     <Modal>
       <ConfirmModalContainer>
         <ModalHeader>
-          {type === 'error' && <Icon src="/icons/alert.svg" />}
-          {type === 'warning' && <Icon src="/icons/attention.svg" />}
-          {type === 'info' && <Icon src="/icons/alert.svg" />}
-          {type === 'success' && <Icon src="/icons/success.svg" />}
+          {type === 'error' && <Icon src="/ticka_icon.svg" />}
+          {type === 'warning' && <Icon src="/ticka_icon.svg" />}
+          {type === 'info' && <Icon src="/ticka_icon.svg" />}
+          {type === 'success' && <Icon src="/ticka_icon.svg" />}
 
           {title}
         </ModalHeader>

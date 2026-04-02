@@ -8,15 +8,14 @@ interface StatusBadgeProps {
 export const CardContainer = styled.div<StatusBadgeProps>`
   position: relative;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 16px;
   width: 100%;
-  max-width: 391.67px;
-  height: auto;
+  min-height: 108px;
   background: #1136db1a;
   border: 1px solid #3a3a3a;
   border-radius: 12px;
-  padding: 12px;
+  padding: 12px 16px 12px 12px;
   transition: all 0.3s ease;
 
   &:hover {
@@ -35,8 +34,9 @@ export const CardContainer = styled.div<StatusBadgeProps>`
 
 export const ImageContainer = styled.div`
   position: relative;
-  width: 100%;
-  height: 220px;
+  width: 140px;
+  min-width: 140px;
+  height: 82px;
   border: 1px solid #3a3a3a;
   border-radius: 12px;
   overflow: hidden;
@@ -49,14 +49,15 @@ export const EnterpriseImage = styled.img`
 `;
 
 export const StatusIcon = styled.div`
-  position: absolute;
-  top: 8px;
-  left: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
+  margin-right: 6px;
   cursor: pointer;
   transition: all 0.3s;
+  border: none;
+  background: transparent;
 
   &:hover {
     transform: scale(1.1);
@@ -125,28 +126,30 @@ export const MenuIcon = styled.div`
 
 export const ContentContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   flex: 1;
 `;
 
 export const HeaderRow = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   cursor: pointer;
+  width: 100%;
 `;
 
 export const HeaderColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 100%;
 `;
 
 export const Title = styled.h3`
   font-weight: 800;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 22px;
   color: #d6d5d3;
   margin: 0;
 `;
@@ -203,9 +206,9 @@ export const Address = styled.div`
 `;
 
 export const AddressText = styled.p`
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  line-height: 22px;
+  line-height: 20px;
   letter-spacing: 0%;
   color: #d6d5d3;
   margin: 0;

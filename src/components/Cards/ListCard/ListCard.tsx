@@ -1,9 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaTrophy } from 'react-icons/fa';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { LocationIcon } from '@/components/Icons/enterprises/CardIcons';
+import handleError from '@/utils/handleToast';
+import api from '@/services/api';
 
 import { IoCheckmarkCircle, IoCheckmarkCircleOutline } from 'react-icons/io5';
+import Skeleton from 'react-loading-skeleton';
 import {
   CardContainer,
   ImageContainer,
@@ -25,6 +29,8 @@ export interface EnterpriseCardProps {
   status: 'PENDING' | 'COMPLETED';
   imageUrl: string;
   platinum?: boolean;
+  updating?: boolean;
+  documentId: number;
 }
 
 const ListCard: React.FC<EnterpriseCardProps> = ({
@@ -33,13 +39,38 @@ const ListCard: React.FC<EnterpriseCardProps> = ({
   status,
   imageUrl,
   platinum,
+  updating,
+  documentId,
 }) => {
+  const query = useQueryClient();
   const menuRef = useRef<HTMLDivElement>(null);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [hasImageError, setHasImageError] = useState(false);
+
+  const hasImage = Boolean(imageUrl?.trim());
+  const showFallbackImage = !hasImage || hasImageError || !isImageLoaded;
 
   const onMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const onMarkAsCompleted = async () => {
+    setLoading(true);
+
+    try {
+      await api.patch(`/items/${documentId}`);
+      query.invalidateQueries({
+        queryKey: ['getCollectionById'],
+        exact: false,
+      });
+    } catch (error) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -58,19 +89,48 @@ const ListCard: React.FC<EnterpriseCardProps> = ({
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    setIsImageLoaded(false);
+    setHasImageError(false);
+  }, [imageUrl]);
+
+  if (loading || updating) {
+    return (
+      <Skeleton
+        width="100%"
+        height={116}
+        baseColor="#202020"
+        highlightColor="#444"
+        borderRadius={12}
+      />
+    );
+  }
+
   return (
     <CardContainer status={status}>
       <ImageContainer ref={menuRef}>
-        <EnterpriseImage src={imageUrl} alt={title} />
+        {showFallbackImage && (
+          <EnterpriseImage
+            src="/ticka_logo.svg"
+            alt="Ticka"
+            style={{
+              objectFit: 'contain',
+              padding: '10px',
+              background: '#0f1530',
+            }}
+          />
+        )}
 
-        {status === 'PENDING' ? (
-          <StatusIcon>
-            <IoCheckmarkCircleOutline size={30} color="#00FF0DB0" />
-          </StatusIcon>
-        ) : (
-          <StatusIcon>
-            <IoCheckmarkCircle size={30} color="#00FF0DB0" />
-          </StatusIcon>
+        {hasImage && !hasImageError && (
+          <EnterpriseImage
+            src={imageUrl}
+            alt={title}
+            onLoad={() => setIsImageLoaded(true)}
+            onError={() => setHasImageError(true)}
+            style={{
+              display: isImageLoaded ? 'block' : 'none',
+            }}
+          />
         )}
 
         {platinum && (
@@ -94,6 +154,16 @@ const ListCard: React.FC<EnterpriseCardProps> = ({
           </HeaderColumn>
         </HeaderRow>
       </ContentContainer>
+
+      {status === 'PENDING' ? (
+        <StatusIcon onClick={onMarkAsCompleted}>
+          <IoCheckmarkCircleOutline size={30} color="#00FF0DB0" />
+        </StatusIcon>
+      ) : (
+        <StatusIcon onClick={onMarkAsCompleted}>
+          <IoCheckmarkCircle size={30} color="#00FF0DB0" />
+        </StatusIcon>
+      )}
     </CardContainer>
   );
 };

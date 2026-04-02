@@ -29,3 +29,17 @@ export const useCollectionById = (id: string) => {
     enabled: !!id,
   });
 };
+
+export const useCollectionDetails = (id: string) => {
+  const getCollectionDetails = async ({ queryKey }: QueryFunctionContext) => {
+    const [, id] = queryKey;
+    const { data } = await api.get<ICollection>(`/lists/${id}`);
+    return data;
+  };
+
+  return useQuery({
+    queryKey: ['getCollectionDetails', id],
+    queryFn: getCollectionDetails,
+    enabled: !!id,
+  });
+};

@@ -3,6 +3,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import Skeleton from 'react-loading-skeleton';
 import { FaMasksTheater } from 'react-icons/fa6';
+import { GiStoneThrone, GiSkullCrossedBones } from 'react-icons/gi';
+import { MdLocalMovies } from 'react-icons/md';
+import { IoGameController } from 'react-icons/io5';
 
 import { useCollections } from '@/services/collections/collections';
 import ArrowIcon from '../Icons/navbar/ArrowIcon';
@@ -38,11 +41,19 @@ const Navbar = () => {
 
   const { data: collections, isLoading } = useCollections({});
 
+  const icons = {
+    1: <MdLocalMovies size={26} />,
+    2: <FaMasksTheater size={26} />,
+    3: <IoGameController size={26} />,
+    4: <GiStoneThrone size={26} />,
+    5: <GiSkullCrossedBones size={26} />,
+  } as any;
+
   const navLinks =
     collections?.map(collection => {
       return {
         href: `/collection/${collection.id}`,
-        icon: <FaMasksTheater size={26} />,
+        icon: icons[collection.iconNumber] || <MdLocalMovies size={26} />,
         text: collection.name,
       };
     }) || [];

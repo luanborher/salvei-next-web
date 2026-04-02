@@ -84,14 +84,14 @@ const warningPrimaryVariant = css`
 `;
 
 const successOutlinedVariant = css`
-  border: 1px solid ${({ theme }) => theme.colors.success};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
   background: #ffffff;
-  color: ${({ theme }) => theme.colors.success};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const successPrimaryVariant = css`
-  border: 1px solid ${({ theme }) => theme.colors.success};
-  background: ${({ theme }) => theme.colors.success};
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.colors.primary};
   color: #ffffff;
 `;
 

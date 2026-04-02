@@ -47,6 +47,11 @@ const GridCard: React.FC<EnterpriseCardProps> = ({
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [hasImageError, setHasImageError] = useState(false);
+
+  const hasImage = Boolean(imageUrl?.trim());
+  const showFallbackImage = !hasImage || hasImageError || !isImageLoaded;
 
   const onMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -80,6 +85,11 @@ const GridCard: React.FC<EnterpriseCardProps> = ({
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    setIsImageLoaded(false);
+    setHasImageError(false);
+  }, [imageUrl]);
+
   if (loading || updating) {
     return (
       <Skeleton
@@ -95,7 +105,29 @@ const GridCard: React.FC<EnterpriseCardProps> = ({
   return (
     <CardContainer status={status}>
       <ImageContainer ref={menuRef}>
-        <EnterpriseImage src={imageUrl} alt={title} />
+        {showFallbackImage && (
+          <EnterpriseImage
+            src="/ticka_logo.svg"
+            alt="Ticka"
+            style={{
+              objectFit: 'contain',
+              padding: '18px',
+              background: '#0f1530',
+            }}
+          />
+        )}
+
+        {hasImage && !hasImageError && (
+          <EnterpriseImage
+            src={imageUrl}
+            alt={title}
+            onLoad={() => setIsImageLoaded(true)}
+            onError={() => setHasImageError(true)}
+            style={{
+              display: isImageLoaded ? 'block' : 'none',
+            }}
+          />
+        )}
 
         {status === 'PENDING' ? (
           <StatusIcon onClick={onMarkAsCompleted}>
