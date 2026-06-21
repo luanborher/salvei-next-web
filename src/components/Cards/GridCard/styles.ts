@@ -19,8 +19,16 @@ export const CardContainer = styled.div<StatusBadgeProps>`
   padding: 12px;
   transition: all 0.3s ease;
 
+  .trash-icon {
+    opacity: 0;
+  }
+
   &:hover {
     transform: scale(0.99);
+
+    .trash-icon {
+      opacity: 1;
+    }
   }
 
   ${({ status }) => {
@@ -52,6 +60,23 @@ export const StatusIcon = styled.button`
   position: absolute;
   top: 8px;
   left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  background: transparent;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const DeleteIcon = styled.button`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
   display: flex;
   align-items: center;
   justify-content: center;

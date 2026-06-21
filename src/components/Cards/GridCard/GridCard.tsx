@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaTrophy } from 'react-icons/fa';
+import Skeleton from 'react-loading-skeleton';
+import { FaTrashAlt, FaTrophy } from 'react-icons/fa';
 import { IoCheckmarkCircle, IoCheckmarkCircleOutline } from 'react-icons/io5';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -7,7 +8,6 @@ import { LocationIcon } from '@/components/Icons/enterprises/CardIcons';
 import handleError from '@/utils/handleToast';
 import api from '@/services/api';
 
-import Skeleton from 'react-loading-skeleton';
 import {
   CardContainer,
   ImageContainer,
@@ -21,6 +21,7 @@ import {
   AddressText,
   HeaderColumn,
   StatusIcon,
+  DeleteIcon,
 } from './styles';
 
 export interface EnterpriseCardProps {
@@ -73,6 +74,22 @@ const GridCard: React.FC<EnterpriseCardProps> = ({
     }
   };
 
+  const onDelete = async () => {
+    setLoading(true);
+
+    try {
+      await api.delete(`/items/${documentId}`);
+      query.invalidateQueries({
+        queryKey: ['getCollectionById'],
+        exact: false,
+      });
+    } catch (error) {
+      handleError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -104,6 +121,10 @@ const GridCard: React.FC<EnterpriseCardProps> = ({
 
   return (
     <CardContainer status={status}>
+      <DeleteIcon className="trash-icon" onClick={onDelete}>
+        <FaTrashAlt size={18} color="#ff0000" />
+      </DeleteIcon>
+
       <ImageContainer ref={menuRef}>
         {showFallbackImage && (
           <EnterpriseImage
@@ -116,7 +137,6 @@ const GridCard: React.FC<EnterpriseCardProps> = ({
             }}
           />
         )}
-
         {hasImage && !hasImageError && (
           <EnterpriseImage
             src={imageUrl}
